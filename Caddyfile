@@ -1,0 +1,20 @@
+api.texttolearn.in {
+	handle /api/node/* {
+		uri strip_prefix /api/node
+		reverse_proxy node-api:3000
+	}
+
+	handle /api/java/* {
+		uri strip_prefix /api/java
+		reverse_proxy java-api:5001
+	}
+
+	handle /api/python/* {
+		uri strip_prefix /api/python
+		reverse_proxy python-api:8000
+	}
+
+	handle /health {
+		respond "OK" 200
+	}
+}
