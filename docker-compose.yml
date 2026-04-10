@@ -1,0 +1,46 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - node-api
+      - java-api
+      - python-api
+    restart: unless-stopped
+
+  node-api:
+    build: ../mp-backend-node-service
+    environment:
+      - PORT=3000
+    env_file: .env
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  java-api:
+    build: ../mp-backend-java-service
+    env_file: .env
+    expose:
+      - "5001"
+    restart: unless-stopped
+
+  python-api:
+    build: ../mp-backend-python-service
+    env_file: .env
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  chromadb:
+    image: chromadb/chroma:latest
+    volumes:
+      - chroma_data:/chroma/chroma
+    expose:
+      - "8001"
+    restart: unless-stopped
+
+volumes:
+  chroma_data:
