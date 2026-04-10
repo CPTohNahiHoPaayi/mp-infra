@@ -22,6 +22,8 @@ services:
 
   java-api:
     build: ../mp-backend-java-service
+    environment:
+      - PORT=5001
     env_file: .env
     expose:
       - "5001"
