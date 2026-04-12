@@ -1,4 +1,16 @@
 api.texttolearn.in {
+	header {
+		Access-Control-Allow-Origin https://mp-frontend-one.vercel.app
+		Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+		Access-Control-Allow-Headers "Content-Type, Authorization"
+		Access-Control-Allow-Credentials true
+	}
+
+	@options method OPTIONS
+	handle @options {
+		respond "" 204
+	}
+
 	handle /api/node/* {
 		uri strip_prefix /api/node
 		reverse_proxy node-api:3000
