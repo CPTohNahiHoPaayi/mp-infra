@@ -4,7 +4,7 @@
 #        ./deploy-ec2.sh python-api (rebuild one service)
 #        ./deploy-ec2.sh java-api python-api (rebuild specific services)
 
-KEY="$(dirname "$0")/mp-key-ap-south-1.pem"
+KEY="$(dirname "$0")/../mp-key-ap-south-1.pem"
 HOST="ubuntu@api.texttolearn.in"
 
 SERVICE_ARGS="${*}"
