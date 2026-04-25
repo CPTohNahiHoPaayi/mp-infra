@@ -6,9 +6,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 trap 'echo "Stopping all services..."; kill 0' EXIT
 
-# Python RAG service (port 8000)
-echo "Starting Python RAG service on :8000..."
-(cd "$ROOT/mp-backend-python-service" && source venv/bin/activate && uvicorn app.main:app --reload --port 8000) &
+# Python RAG + RLM service (port 9000)
+echo "Starting Python RAG + RLM service on :9000..."
+(cd "$ROOT/mp-backend-python-service" && source venv/bin/activate && uvicorn app.main:app --reload --port 9000) &
 
 # Node service (port 3000)
 echo "Starting Node service on :3000..."
@@ -27,7 +27,7 @@ echo "All services starting..."
 echo "  Frontend:   http://localhost:5173"
 echo "  Java API:   http://localhost:5001"
 echo "  Node API:   http://localhost:3000"
-echo "  Python API: http://localhost:8000"
+echo "  Python API: http://localhost:9000"
 echo ""
 echo "Press Ctrl+C to stop all services"
 
